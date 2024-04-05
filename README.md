@@ -1,5 +1,5 @@
 # InterView: Demonstrating a framework to support interaction-driven visualization systems design
-
+InterView is implemented in a system, composed of two software components, one to automatically generate the interaction space of a visualization system using a statechart, and one to automatically replay user traces, reproducing each low-level interaction an end user performed in the interaction log. To demonstrate the capabilities of InterView, we applied it to a well-known crossfilter interface, Falcon, to guide the visualization system designers in discovering the root causes behind excessive latency, coupled with a complete understanding of the interaction space of their visualization system. In such a way, designers can finally acknowledge the problems of their visualization system with higher granularity and precision, also giving more context to the feedback received by the end users. 
 A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4".
 
 ## Usage
