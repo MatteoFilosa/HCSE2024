@@ -1,9 +1,9 @@
-# XXX: InterView: Demonstrating a framework to support interaction-driven visualization systems design
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
-Inside the ./statechart-generator folder there is the Statechart Generator software component.
+# InterView: Demonstrating a framework to support interaction-driven visualization systems design
 
+A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4".
+
+## Usage
+Inside the ./statechart-generator folder there is the Statechart Generator software component.
 In order to build and run it in your machine, you must have already installed and configured:
 
     NodeJS v12.20.2
@@ -13,25 +13,33 @@ In order to build and run it in your machine, you must have already installed an
 
 Then you can open a terminal inside that folder and run the main.js file with NodeJS. You can specify the link to the visualization inside the ./statechart-generator/material/system_url.txt configuration file, while the list of excluded events can be customized inside the ./statechart-generator/material/excluded_events.txt configuration file.
 
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
 
-Inside the ./validation folder, there are the generated Complete Statecharts of ten visualization systems:
+Inside the ./traces-replayer folder there is the Traces Replayer software component.
 
-	1. DataVis
-	2. Crumbs
-	3. Crosswidget
-	4. Ivan
-	5. Nemesis
-	6. IDMVis
-	7. Wasp
-	8. Radviz
-	9. InfluenceMap
-	10. Nemesis
+The script automatically explores Falcon's 7 million flights visualization (whose url is contained in "conf.json") given a sample logged trace name "exploration_falcon_7M_1.json". Other explorations can be found in the "explorations" folder. To test the other explorations, remember to change line 1134, inputing the desired user trace's name to test. The replay returns as output three files: a "summary_falcon_7M.json" file in the count folder, another "summary_falcon_7M.json" file in the times_and_violations folder (different from the previous one, containing all the times each interaction required to be reproduced), an additional "summaryProblems_falcon_7M.json" file that contains the violations found in the given trace.
+
+All the first two types of files were already computed in the "count" and "time_and_violations" folder for the 50 traces collected in our previous work.
+The count.py and times.py scripts help to better format the events and the execution time of each trace, but they are not necessary to execute in order to test the replayer.
+
+To test the replayer, it is necessary to:
+
+1) Install the requirements present in the requirements.txt file (needed also for the count.py and times.py scripts, present in requirements.txt);
+2) Download Chrome Webdriver available at: https://chromedriver.chromium.org/home ;
+3) Add the downloaded webdriver to PATH environmental variable;
+4) Execute the PathsSimulator.py script.
+
+
+Inside /validations/statecharts there are the generated Complete Statecharts of eleven visualization systems:
+
+	1. Falcon
+	2. DataVis
+	3. Crumbs
+	4. Crosswidget
+	5. Ivan
+	6. Nemesis
+	7. IDMVis
+	8. Wasp
+	9. Radviz
+	10. InfluenceMap
+	11. Nemesis
 	
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------
-
-Inside ./user-study folder, there is all the material produced during the user study.
