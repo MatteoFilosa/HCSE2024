@@ -3,6 +3,8 @@ InterView is implemented in a system, composed of two software components, one t
 A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4".
 
 ## Usage
+
+### Statechart Generator
 Inside the ./statechart-generator folder there is the **Statechart Generator** software component.
 In order to build and run it in your machine, you must have already installed and configured:
 
@@ -13,6 +15,7 @@ In order to build and run it in your machine, you must have already installed an
 
 Then you can open a terminal inside that folder and run the main.js file with NodeJS. You can specify the link to the visualization inside the ./statechart-generator/material/system_url.txt configuration file, while the list of excluded events can be customized inside the ./statechart-generator/material/excluded_events.txt configuration file.
 
+### Traces Replayer
 
 Inside the ./traces-replayer folder there is the **Traces Replayer** software component.
 
