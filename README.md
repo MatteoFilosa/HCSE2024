@@ -1,5 +1,7 @@
 # InterView: Demonstrating a framework to support interaction-driven visualization systems design
 
+A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4".
+
 ## Usage
 Inside the ./statechart-generator folder there is the Statechart Generator software component.
 In order to build and run it in your machine, you must have already installed and configured:
