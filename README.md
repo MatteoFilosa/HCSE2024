@@ -3,7 +3,7 @@ InterView is implemented in a system, composed of two software components, one t
 A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4".
 
 ## Usage
-Inside the ./statechart-generator folder there is the Statechart Generator software component.
+Inside the ./statechart-generator folder there is the **Statechart Generator** software component.
 In order to build and run it in your machine, you must have already installed and configured:
 
     NodeJS v12.20.2
@@ -14,7 +14,7 @@ In order to build and run it in your machine, you must have already installed an
 Then you can open a terminal inside that folder and run the main.js file with NodeJS. You can specify the link to the visualization inside the ./statechart-generator/material/system_url.txt configuration file, while the list of excluded events can be customized inside the ./statechart-generator/material/excluded_events.txt configuration file.
 
 
-Inside the ./traces-replayer folder there is the Traces Replayer software component.
+Inside the ./traces-replayer folder there is the **Traces Replayer** software component.
 
 The script automatically explores Falcon's 7 million flights visualization (whose url is contained in "conf.json") given a sample logged trace name "exploration_falcon_7M_1.json". Other explorations can be found in the "explorations" folder. To test the other explorations, remember to change line 1134, inputing the desired user trace's name to test. The replay returns as output three files: a "summary_falcon_7M.json" file in the count folder, another "summary_falcon_7M.json" file in the times_and_violations folder (different from the previous one, containing all the times each interaction required to be reproduced), an additional "summaryProblems_falcon_7M.json" file that contains the violations found in the given trace.
 
