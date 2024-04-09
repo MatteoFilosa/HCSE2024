@@ -5,7 +5,11 @@ InterView is implemented in a system, composed of two software components, one t
 
 A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4":
 
-https://github.com/MatteoFilosa/InterView/assets/67047355/ec493b63-0cb8-4878-878a-069461c7a1ed
+
+
+https://github.com/MatteoFilosa/InterView/assets/67047355/c5404977-f9ae-443f-8459-8b028254deb2
+
+
 
 
 ## Usage
