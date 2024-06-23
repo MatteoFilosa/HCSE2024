@@ -1,0 +1,10 @@
+{
+    "0": [
+        "violation of level 3 on /html[1]/body[1]/div[2]/div[4]/canvas[1]mousemove with time: 5079.9720287323 with details: [529, 56] in path: 0",
+        "violation of level 2 on /html[1]/body[1]/div[2]/div[7]/canvas[1]mousemove with time: 4090.390920639038 with details: [343, 106] in path: 0"
+    ],
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": []
+}

@@ -5,54 +5,43 @@ InterView is implemented in a system, composed of two software components, one t
 
 A demonstration video of InterView is present in the root directory of this repository, named "demonstration.mp4":
 
-
-
 https://github.com/MatteoFilosa/InterView/assets/67047355/c5404977-f9ae-443f-8459-8b028254deb2
 
 
+## Installation
 
+### Steps to run the server for the first time:
 
-## Usage
+1) Install the requirements running "pip install -r requirements.txt" (If you don't have pip installed, install it)
 
-### Statechart Generator
-Inside the ./statechart-generator folder there is the **Statechart Generator** software component.
-In order to build and run it in your machine, you must have already installed and configured:
+2) Create a virtual environment by running the command "python -m venv <name_of_the_virtual_environment>" in the terminal
 
-    NodeJS v12.20.2
-    Puppeteer node module v13.7.0
-    fs node module v1.0.0
-    is-same-origin node module v0.0.7
+3) Run the runApp file contained in the main directory to start the app: python runApp.py <name_of_the_virtual_environment>
 
-Then you can open a terminal inside that folder and run the main.js file with NodeJS. You can specify the link to the visualization inside the ./statechart-generator/material/system_url.txt configuration file, while the list of excluded events can be customized inside the ./statechart-generator/material/excluded_events.txt configuration file.
+InterView: installation of the dependencies for the traces replay and state chart generation features
 
+1) Install selenium 4.1.3 ----> pip install selenium==4.1.3 (it should be already installed from step 1)
 
-Inside /validations/statecharts there are the generated Complete Statecharts of eleven visualization systems:
+2) Download and put in any folder you like an updated chromedriver https://googlechromelabs.github.io/chrome-for-testing/#stable (Find the list here and download the version relative to your OS). Don't forget to update Chrome.
 
-	1. Falcon
-	2. DataVis
-	3. Crumbs
-	4. Crosswidget
-	5. Ivan
-	6. Nemesis
-	7. IDMVis
-	8. Wasp
-	9. Radviz
-	10. InfluenceMap
-	11. Nemesis
-	
+3) Add the chromedriver's path to PATH environmental variable
 
-### Traces Replayer
+4) Change line 1143 in PathSimulator.py to your path to chromedriver. Use double '\' for the path if you get a syntax error.
 
-Inside the ./traces-replayer folder there is the **Traces Replayer** software component.
+5) Install the next node modules:
 
-The script automatically explores Falcon's 7 million flights visualization (whose url is contained in "conf.json") given a sample logged trace name "exploration_falcon_7M_1.json". Other explorations can be found in the "explorations" folder. To test the other explorations, remember to change line 1134, inputing the desired user trace's name to test. The replay returns as output three files: a "summary_falcon_7M.json" file in the count folder, another "summary_falcon_7M.json" file in the times_and_violations folder (different from the previous one, containing all the times each interaction required to be reproduced), an additional "summaryProblems_falcon_7M.json" file that contains the violations found in the given trace.
+- NodeJS (from v12.20.2)
+- Puppeteer node module v13.7.0 (npm install puppeteer@13.7.0)
+- fs node module v1.0.0 (npm install fs@v1.0.0)
+- is-same-origin node module v0.0.7 (npm install is-same-origin@v0.0.7)
 
-All the first two types of files were already computed in the "count" and "time_and_violations" folder for the 50 traces collected in our previous work.
-The count.py and times.py scripts help to better format the events and the execution time of each trace, but they are not necessary to execute in order to test the replayer.
+## InterView: main functionalities and how to run them
 
-To test the replayer, it is necessary to:
+1) In the static/files/URLs folder there's the sampleUrls file. Copy a URL from the file and put it in the "Load System" placeholder: the visualization system will be loaded on the left, the resulting state chart will be loaded on the right. The URLs contain precomputed state charts. If for a visualization system a state chart wasn't generated, the system will invoke a subprocess that in the end generates it and puts it in the DB (it is the state chart generation subprocess). This subprocess can take much time, even an entire day, keep that in mind while trying to generate a new state chart
 
-1) Install the requirements present in the requirements.txt file (needed also for the count.py and times.py scripts, present in requirements.txt);
-2) Download Chrome Webdriver available at: https://chromedriver.chromium.org/home ;
-3) Add the downloaded webdriver to PATH environmental variable;
-4) Execute the PathsSimulator.py script.
+2) In the User Traces Tab you can see all user traces captured, with many details such as violations in latency thresholds, interactions, etc. They are relative to the Falcon crossfilter Visualization system (see https://vega.github.io/falcon/flights/). 
+
+3) By selecting a single trace, an extra info div appears on the right. On the top right corner, there's a button for seeing the user trace (or traces) in the interaction space (state chart), whose edges' label are colured accordingly to a color scale, indicating how much a certain interaction has been performed or not. If the trace recorded violations in latency thresholds, it is also possible to see them reflected in the state chart.
+
+4) At the bottom of the extra info for the trace, it is possible to see a button, used to invoke the replay functionality (available only for a single trace). A new window will be opened, and the trace will be replayed, doing the same interactions in the trace, seeing on the left the visualization system and on the right the state chart, that is coloured basing on the interaction that is being performed in the visualization system. It is possible to play, pause, stop, and reproduce directly the next event by playing the relative buttons on the top.
+

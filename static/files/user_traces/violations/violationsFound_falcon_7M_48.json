@@ -1,0 +1,13 @@
+{
+    "0": [
+        "violation of level 3 on /html[1]/body[1]/div[2]/div[4]/canvas[1]mousemove with time: 5066.616773605347 with details: [268, 134] in path: 0",
+        "violation of level 2 on /html[1]/body[1]/div[2]/div[4]/canvas[1]brush mousemove with time: 2581.9942951202393 with details: [[270, 50], [369, 50]] in path: 0"
+    ],
+    "1": [
+        "violation of level 3 on /html[1]/body[1]/div[2]/div[6]/canvas[1]brush mousemove with time: 5030.095100402832 with details: [[270, 50], [434, 50]] in path: 1",
+        "violation of level 1 on /html[1]/body[1]/div[2]/div[6]/canvas[1]mousemove with time: 1621.7234134674072 with details: [351, 97] in path: 1"
+    ],
+    "2": [],
+    "3": [],
+    "4": []
+}

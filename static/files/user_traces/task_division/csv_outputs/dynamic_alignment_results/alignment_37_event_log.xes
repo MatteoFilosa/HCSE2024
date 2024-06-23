@@ -1,0 +1,25 @@
+[
+  {
+    "alignment": [
+      [
+        "alignment",
+        "[('>>', 'brush on departure'), ('>>', 'brush on departure'), ('>>', 'brush on airtime'), ('>>', 'brush on airtime'), ('mousemove on airtime', 'mousemove on airtime'), ('mousemove on distance', '>>'), ('mousemove on departure', '>>'), ('mousemove on departure', '>>'), ('brush on departure', '>>'), ('mousemove on arrival', '>>'), ('brush on airtime', 'brush on airtime'), ('>>', 'mousemove on airtime'), ('brush on airtime', 'brush on airtime'), ('click on airtime', 'click on airtime'), ('mousemove on airtime', 'mousemove on airtime'), ('mousemove on airtime', 'mousemove on airtime'), ('mousemove on airtime', '>>'), ('brush on airtime', 'brush on airtime'), ('mousemove on airtime', '>>'), ('click on airtime', 'click on airtime'), ('mousemove on airtime', '>>'), ('click on airtime', '>>'), ('mousemove on airtime', '>>'), ('click on airtime', '>>'), ('mousemove on airtime', '>>'), ('click on airtime', '>>'), ('click on airtime', '>>'), ('mousemove on airtime', '>>'), ('click on airtime', '>>'), ('mousemove on airtime', '>>'), ('click on airtime', '>>'), ('dblclick on airtime', '>>'), ('mousemove on delay', '>>'), ('mousemove on delay', '>>'), ('mousemove on delay', '>>'), ('mousemove on delay', '>>'), ('brush on delay', '>>'), ('brush on delay', '>>'), ('mousemove on delay', '>>'), ('brush on delay', '>>'), ('>>', 'mousemove on departure'), ('brush on departure', 'brush on departure'), ('brush on departure', '>>'), ('mousemove on delay', '>>'), ('brush on delay', '>>'), ('click on delay', '>>'), ('mousemove on delay', '>>'), ('brush on delay', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('click on distance', '>>'), ('mousemove on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('brush on distance', '>>'), ('mousemove on distance', '>>'), ('click on distance', '>>'), ('mousemove on delay', '>>'), ('brush on delay', '>>'), ('click on delay', '>>'), ('>>', 'brush on airtime'), ('>>', 'brush on airtime')]"
+      ],
+      [
+        "cost",
+        "620000"
+      ],
+      [
+        "fitness",
+        "0.07462686567164178"
+      ],
+      [
+        "bwc",
+        "670000"
+      ]
+    ],
+    "cost": 620000,
+    "fitness": 0.07462686567164178,
+    "bwc": 670000
+  }
+]

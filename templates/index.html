@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>InterView</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        
+
+        <!-- Page Content  -->
+        <div id="content">
+            <!-- Main Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 3.2em">
+                <div class="container-fluid">
+                    <!-- <button type="button" id="sidebarCollapse" class="btn btn-info" title="System Breakdown">
+                        <i class="fas fa-align-left"></i>
+                    </button> -->
+                    <a class="navbar-brand" href="/" style="color: #52b0c3">InterView</a>
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav">
+
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Statechart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/userTraces">User Traces</a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" id="insertedURL" type="search" placeholder="Load System"
+                            aria-label="System URL">
+                        <button class="btn btn-outline-success" id="loadSystem" onclick="LoadSystem()">Load</button>
+                    </form>
+
+
+                </div>
+            </nav>
+
+            <!-- Tabs-->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <p>Number of States</p>
+                    <p id = "states"> - </p>
+                    <div style="border-left: 1px solid #ffffffd9;
+                    height: 27px;"></div>
+                </li>
+                <li class="nav-item" >
+                    <p>Number of Edges</p>
+                    <p id = "edges"> - </p>
+                    <div style="border-left: 1px solid #ffffffd9;
+                    height: 27px;"></div>
+                </li>
+                <li class="nav-item" >
+                    <p>Max node degree</p>
+                    <p id = "maxDeg"> - </p>
+                    <div style="border-left: 1px solid #ffffffd9;
+                    height: 27px;"></div>
+                </li>
+                <li class="nav-item" >
+                    <p>Average node degree</p>
+                    <p id = "avgDeg"> - </p>
+                    <div style="border-left: 1px solid #ffffffd9;
+                    height: 27px;"></div>
+                </li>
+
+                <div class="layoutButtons">
+                    <!-- TODO MATTEO -->
+                    <!--
+                        The replay icons.
+                        Initially they are not shown unless we are in the replay domain url "/home".
+                        The current action is green, the others are white.
+                        Clicking on them will change the replay state.
+                    -->
+                    <ul id="replayIconsID" style="display: none;">
+                        <li class="replayButtons" class="nav-item">
+                            <p><i id="replayID_stop" class="fa fa-stop replayButtonClass" style="color: rgb(255, 255, 255);"
+                                    onclick="changeReplayState('stop');"></i></p>
+                            <p><i id="replayID_pause" class="fa fa-pause replayButtonClass" style="color: rgb(255, 255, 255);"
+                                    onclick="changeReplayState('pause');"></i></p>
+                            <p><i id="replayID_play" class="fa fa-play replayButtonClass" style="color: rgb(0, 255, 0);"
+                                    onclick="changeReplayState('play');"></i></p>
+                            <p><i id="replayID_step" class="fa fa-step-forward replayButtonClass" style="color: rgb(255, 255, 255);"
+                                    onclick="changeReplayState('step');"></i></p>
+                            <div style="border-left: 1px solid #ffffffd9; height: 27px;"></div>
+                        </li>
+                    </ul>
+                    <button onclick="resizeContainers('statechart')"><img src="images/statechartLayout.png" /></button>
+                    <button onclick="resizeContainers()"><img src="images/defaultLayout.png" /></button>
+                    <button onclick="resizeContainers('website')"><img src="images/websiteLayout.png" /></button>
+                </div>
+
+            </ul>
+
+            <div class="mainContainer" id="mainContainer">
+                <div id="colorLegend" data-visible="false">
+                    <button onclick="toggleLegend()">Legend 
+                    <img src="images/downArrow.png" id="colorLegendButton" width="20px" height="20px" style="transform: rotate(180deg);"/>
+                    </button>
+                </div>
+                <div class="website" id="websiteContainer">
+                    <iframe id="website" src="" title="D3-radviz" frameBorder="0"></iframe>
+                </div>
+                <!-- <div class="dragLine" id="dragLine"></div> -->
+                <div class="statechart" id="statechartContainer">
+                    <div id="tooltip" style="display: none"></div>
+                    <div class="spinner-border" id="loadingIcon" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    
+                    <div id="statechartSVG" style="display: none;" class="statechartSVG">
+
+                    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+    <script src=" 
+    https://d3js.org/d3-color.v1.min.js">
+    </script>
+    <script src=" 
+    https://d3js.org/d3-interpolate.v1.min.js">
+    </script>
+    <script src=" 
+    https://d3js.org/d3-scale-chromatic.v1.min.js">
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>InterView</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+    <!-- DataTables JavaScript -->
+    <!-- <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
+
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/userTraces.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- Page Content  -->
+        <div id="content" style="overflow-y: scroll;">
+            <!-- Main Nav Bar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 3.2em">
+                <div class="container-fluid">
+
+                    <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button> -->
+                    <a class="navbar-brand" href="/" style="color: #52b0c3">InterView</a>
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Statechart</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">User Traces</a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </div>
+
+                    <div style="width: 250px;"></div>
+
+
+                </div>
+            </nav>
+
+            <div class="mainContainer">
+
+
+
+                <div id="traceContainer">
+                    <div id="tableDiv" style="display: block;
+                    width: 70%;
+                    padding: 0.5%;transition: all 0.3s;box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">
+                        <div style="display: flex;justify-content: space-between;margin-bottom:30px;">
+                            <h1 id="tracesNum">Loading User Traces... </h1>
+                            
+                        </div>
+
+                        <div class="spinner-border" id="loadingIcon" role="status" style="display: block;margin-left: 50%;
+                        margin-top: 22%;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+
+                        <table class="table-responsive table-hover" id="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 0.5%;padding-left: 1%;"><input type="checkbox"
+                                            id="selectAllCheckbox"></th>
+                                    <th scope="col" style="width: 2.5%;"><img src="images/userIcon.png" width="20px"
+                                            height="20px" />User ID</th>
+                                    <th scope="col" style="width: 1%;"><img src="images/interactorIcon.png" width="20px"
+                                            height="20px" />Interactions</th>
+                                    <th scope="col" style="width: 2.5%;"><img src="images/errorIcon.png" width="20px"
+                                            height="20px" />Violations</th>
+                                    <th scope="col" style="width: 2.5%;"><img src="images/timeIcon.png" width="20px"
+                                            height="20px" />Total Time (sec.) </th>
+                                    <!-- <th scope="col" style="width: 0.1%;"> </th> -->
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody id="tracesTable">
+                                <!-- Table rows will be dynamically added here -->
+                            </tbody>
+                        </table>
+                        <div id="colorLegend" class="userTracesLegend" data-visible="false">
+                            <button onclick="toggleLegend()">Legend
+                                <img src="images/downArrow.png" id="colorLegendButton" width="20px" height="20px"
+                                    style="transform: rotate(180deg);" />
+                            </button>
+                            <div style="display: flex;">
+                                <div id="eventColumn" style="height: 100%;width: 60%;"></div>
+                                <div id="violationsColumn" style="height: 100%;width: 40%;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="extrainfoDiv" id="extrainfoDiv" data-visible="false">
+                        <div style="display: flex;justify-content: space-between;">
+                            <h1 id="traceInfoTitle">Trace Information </h1>
+                            <a class="newPageBtn" href="#" target="_blank" id="previewTrace"><img
+                                    src="images/newPage.png" /></a>
+                                    
+                        </div>
+                        <button class="selectTraceBtn" id="selectTraceBtn"></button>
+                        
+                        <div id="placeholderText">Select a trace to view more information</div>
+                        <div id="extrainfoContent" style="opacity: 0;transition: all 0.3s">
+                            <div style="display: flex;justify-content: space-between;margin-bottom: 7px;">
+                                <div class="eventsDiv">
+                                    <p id="eventsTotal"></p>
+                                    <ul id="eventsList">
+                                        <li>item 1</li>
+                                        <li>item 2</li>
+                                        <li>item 3</li>
+                                    </ul>
+                                </div>
+                                <div id="heatmap"></div>
+                                <div id="combinedHeatmaps"></div>
+                            </div>
+
+                            <div>
+                                <p id="violationsTotal"></p>
+                                <div id="violationsList">
+
+                                </div>
+                            </div>
+                            <!-- <div id="violationsHeatmap"></div> -->
+
+                            <div class="timeDiv">
+                                <p>Time</p>
+                                <ul id="timeList">
+                                    <li>Total time</li>
+                                    <li>Average time</li>
+                                </ul>
+                            </div>
+                            <div id="eventRectangle"></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src=" 
+    https://d3js.org/d3.v4.min.js">
+    </script>
+    <script src=" 
+    https://d3js.org/d3-color.v1.min.js">
+    </script>
+    <script src=" 
+    https://d3js.org/d3-interpolate.v1.min.js">
+    </script>
+    <script src=" 
+    https://d3js.org/d3-scale-chromatic.v1.min.js">
+    </script>
+
+</body>
+
+</html>
